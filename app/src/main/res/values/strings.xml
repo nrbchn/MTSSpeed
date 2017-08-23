@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Квест Скорость</string>
+    <string name="test">Измерить скорость</string>
+    <string name="test_again">Еще раз</string>
+    <string name="save_result">Сохранить результат</string>
+    <string name="mbps">Мбит/с</string>
+</resources>

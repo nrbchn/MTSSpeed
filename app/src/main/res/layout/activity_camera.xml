@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="frankenbacker.mtsspeed.CameraActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.flurgle.camerakit.CameraView
+            android:id="@+id/camera"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            app:ckCropOutput="true"
+            app:ckFacing="back"
+            app:ckFlash="off"
+            app:ckFocus="tapWithMarker"
+            app:ckJpegQuality="100"
+            app:ckMethod="still"
+            app:ckZoom="pinch">
+
+            <ImageView
+                android:id="@+id/frame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/frame"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="-99dp" />
+
+        </com.flurgle.camerakit.CameraView>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/indicator1"
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/speed1"
+        app:layout_constraintRight_toRightOf="@+id/speed1"
+        app:srcCompat="@drawable/needle" />
+
+    <ImageView
+        android:id="@+id/speed1"
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintRight_toRightOf="@+id/relativeLayout"
+        app:srcCompat="@drawable/bar"
+        android:layout_marginEnd="8dp" />
+
+    <ImageButton
+        android:id="@+id/toggleCamera"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="8dp"
+        android:background="@android:color/background_light"
+        android:scaleType="fitCenter"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="@+id/capturePhoto"
+        app:srcCompat="@drawable/ic_switch"
+        android:layout_marginTop="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/capturePhoto"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.894" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="99dp"
+        android:layout_height="107dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/capturePhoto"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintLeft_toLeftOf="@+id/capturePhoto"
+        app:layout_constraintRight_toRightOf="@+id/capturePhoto"
+        app:layout_constraintTop_toTopOf="@+id/capturePhoto"
+        app:layout_constraintVertical_bias="0.482"
+        tools:layout_editor_absoluteY="401dp" />
+
+    <ImageButton
+            android:id="@+id/toggleFlash"
+            android:visibility="invisible"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="28dp"
+            android:background="@android:color/background_light"
+            android:scaleType="fitCenter"
+            app:layout_constraintLeft_toRightOf="@+id/capturePhoto"
+            app:layout_constraintTop_toTopOf="@+id/capturePhoto"
+            app:srcCompat="@drawable/ic_flash"
+            android:layout_marginStart="28dp" />
+
+    <ImageButton
+        android:id="@+id/capturePhoto"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:srcCompat="@drawable/ic_photo"
+        android:background="@android:color/background_light"
+        android:scaleType="fitCenter"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="speed"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/indicator1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="@+id/indicator1"
+        app:layout_constraintRight_toRightOf="@+id/indicator1" />
+
+</android.support.constraint.ConstraintLayout>
