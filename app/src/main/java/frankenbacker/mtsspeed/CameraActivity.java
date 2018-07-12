@@ -1,7 +1,6 @@
 package frankenbacker.mtsspeed;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -10,39 +9,26 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Environment;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.flurgle.camerakit.CameraKit;
-import com.flurgle.camerakit.CameraListener;
-import com.flurgle.camerakit.CameraView;
-import com.github.anastr.speedviewlib.base.Speedometer;
-import com.github.anastr.speedviewlib.components.Indicators.ImageIndicator;
-
-import org.w3c.dom.Text;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.wonderkiln.camerakit.CameraKit;
+import com.wonderkiln.camerakit.CameraKitError;
+import com.wonderkiln.camerakit.CameraKitEvent;
+import com.wonderkiln.camerakit.CameraKitEventListener;
+import com.wonderkiln.camerakit.CameraKitImage;
+import com.wonderkiln.camerakit.CameraKitVideo;
+import com.wonderkiln.camerakit.CameraView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,6 +43,7 @@ public class CameraActivity extends AppCompatActivity {
     ViewGroup layout;
 
     @BindView(R.id.camera)
+
     CameraView camera;
 
     @BindView(R.id.indicator1)
@@ -134,10 +121,22 @@ public class CameraActivity extends AppCompatActivity {
 
         Bitmap bitmap = ResultHolder.getImage();
         final long startTime = System.currentTimeMillis();
-        camera.setCameraListener(new CameraListener() {
+
+        camera.addCameraKitListener(new CameraKitEventListener() {
             @Override
-            public void onPictureTaken(byte[] jpeg) {
-                super.onPictureTaken(jpeg);
+            public void onEvent(CameraKitEvent cameraKitEvent) {
+
+            }
+
+            @Override
+            public void onError(CameraKitError cameraKitError) {
+
+            }
+
+            @Override
+            public void onImage(CameraKitImage cameraKitImage) {
+                byte[] jpeg = cameraKitImage.getJpeg();
+
                 long callbackTime = System.currentTimeMillis();
                 Bitmap bitmap = BitmapFactory.decodeByteArray(jpeg, 0, jpeg.length);
                 ResultHolder.dispose();
@@ -149,7 +148,29 @@ public class CameraActivity extends AppCompatActivity {
                 intent.putExtra("speedDownload", speedDownload);
                 startActivity(intent);
             }
+
+            @Override
+            public void onVideo(CameraKitVideo cameraKitVideo) {
+
+            }
         });
+
+//        camera.setCameraListener(new CameraListener() {
+//            @Override
+//            public void onPictureTaken(byte[] jpeg) {
+//                super.onPictureTaken(jpeg);
+//                long callbackTime = System.currentTimeMillis();
+//                Bitmap bitmap = BitmapFactory.decodeByteArray(jpeg, 0, jpeg.length);
+//                ResultHolder.dispose();
+//                ResultHolder.setImage(bitmap);
+//                ResultHolder.setNativeCaptureSize(camera.getPreviewSize());
+//                ResultHolder.setTimeToCallback(callbackTime - startTime);
+//                ResultHolder.setImage(Draw());
+//                Intent intent = new Intent(CameraActivity.this, PreviewActivity.class);
+//                intent.putExtra("speedDownload", speedDownload);
+//                startActivity(intent);
+//            }
+//        });
         camera.captureImage();
     }
 

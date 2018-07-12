@@ -3,7 +3,7 @@ package frankenbacker.mtsspeed;
 import android.graphics.Bitmap;
 import android.support.annotation.Nullable;
 
-import com.flurgle.camerakit.Size;
+import com.wonderkiln.camerakit.Size;
 
 import java.lang.ref.WeakReference;
 

@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.github.anastr.speedviewlib.base.Speedometer;
+import com.github.anastr.speedviewlib.Speedometer;
 import com.github.anastr.speedviewlib.components.Indicators.ImageIndicator;
 
 import butterknife.BindView;
@@ -20,10 +20,9 @@ import fr.bmartel.speedtest.SpeedTestReport;
 import fr.bmartel.speedtest.SpeedTestSocket;
 import fr.bmartel.speedtest.inter.ISpeedTestListener;
 import fr.bmartel.speedtest.model.SpeedTestError;
-import fr.bmartel.speedtest.model.UploadStorageType;
 
 public class MainActivity extends AppCompatActivity {
-    private float speedDownload = 0;
+    private static float speedDownload = 0;
 
     @BindView(R.id.speedometer)
     Speedometer speedometer;
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    public class SpeedTestDownload extends AsyncTask<Void, Void, String> {
+    public static class SpeedTestDownload extends AsyncTask<Void, Void, String> {
 
         @Override
         protected String doInBackground(Void... params) {

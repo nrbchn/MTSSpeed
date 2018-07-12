@@ -1,16 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+
     defaultConfig {
         applicationId "frankenbacker.mtsspeed"
+
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 27
+
         versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionName "1.0.1"
+
+        vectorDrawables.useSupportLibrary = true
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -19,18 +24,25 @@ android {
     }
 }
 
+ext {
+    supportLibraryVersion = "27.0.2"
+}
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.jakewharton:butterknife:8.4.0'
-    compile 'com.flurgle:camerakit:0.9.17'
-    compile 'fr.bmartel:jspeedtest:1.31.1'
-    compile 'com.github.anastr:speedviewlib:1.1.5'
-    compile 'com.android.support:design:25.3.1'
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+
+    implementation 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    implementation 'com.wonderkiln:camerakit:0.13.1'
+
+    implementation 'fr.bmartel:jspeedtest:1.31.1'
+
+    implementation 'com.github.anastr:speedviewlib:1.2.0'
+
+    testImplementation 'junit:junit:4.12'
 }

@@ -2,22 +2,16 @@ package frankenbacker.mtsspeed;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.flurgle.camerakit.AspectRatio;
-import com.flurgle.camerakit.Size;
+import com.wonderkiln.camerakit.Size;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -42,7 +36,9 @@ public class PreviewActivity extends AppCompatActivity {
         Intent intent = new Intent(PreviewActivity.this, MainActivity.class);
         startActivity(intent);
         Bundle bundle = getIntent().getExtras();
-        speedDownload = bundle.getFloat("speedDownload");
+        if (bundle != null) {
+            speedDownload = bundle.getFloat("speedDownload");
+        }
     }
 
     @OnClick(R.id.button2)
